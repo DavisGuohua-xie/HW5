@@ -9,7 +9,7 @@
 \newcommand{\st}{~\mid~}
 \newcommand{\derives}{\implies}
 
-\name{}
+\name{Guohua Xie}
 \class{CSE 105} 
 \assignment{Individual Homework 5}
 \duedate{Due: Tuesday May 15, 2018 at 11:00PM (on Gradescope)}
@@ -49,13 +49,20 @@ halting computations, implementation-level descriptions of Turing machines, reco
 of the assignment. For each question below, list {\bf all} the machines from the list $M_1, M_2, 
 M_3, M_4, M_5$ for which the answer is ``yes", or write {\bf None} otherwise.
 \begin{itemize}
-\item[a.] Which of the machines accept the string $0$?
-\item[b.] Which of the machines accept the string $\varepsilon$?
-\item[c.] For which of these machines is it true that the contents of the tape are never changed during a computation?
-\item[d.] Which of the machines recognize the set $\emptyset$?
-\item[e.] Which of the machines decide the set $\emptyset$?
+\item[a.] Which of the machines accept the string $0$? \\
+	M\textsubscript{1}
+\item[b.] Which of the machines accept the string $\varepsilon$? \\
+	M\textsubscript{2}
+\item[c.] For which of these machines is it true that the contents of the tape are never changed during a computation? \\
+	M\textsubscript{4}
+\item[d.] Which of the machines recognize the set $\emptyset$? \\
+M\textsubscript{3}, M\textsubscript{4}, M\textsubscript{5}
+\item[e.] Which of the machines decide the set $\emptyset$? \\
+M\textsubscript{4}, M\textsubscript{5}
 \item[f.] For which of these machines is it true that on at least one input, the computation of the machine halts
-and that on at least one input, the computation of the machine does not halt?
+and that on at least one input, the computation of the machine does not halt? \\
+ M\textsubscript{3} doesn't halt ;
+ 
 \end{itemize}
 
 
@@ -72,12 +79,15 @@ of the assignment.
 ``On input $w$:
 \begin{itemize}
 \item[1.] If $w$ is the empty string, accept.  
+M1
 \item[2.] Otherwise, sweep through the tape from left to right, erasing all input characters, until you reach the end of $w$, and accept."
 \end{itemize}
 \end{quote}
-(i) Change item 2 above to get an implementation-level description that does describe $M_2$. 
+(i) Change item 2 above to get an implementation-level description that does describe $M_2$. \\
+  \phantom{x}\hspace{5ex} 2. Otherwise, sweep through the tape from left to right, erasing the whatever next input characters with a $\square$ , then reject.\\
 
 (ii) When $w$ is of length $k$ ($k >0$), how many steps are there in the computation of $M_2$ on $w$? \\
+ \phantom{x}\hspace{5ex} 1 step. 
 
 
 \item[b.] In this part of the problem, you will write the formal definition for a new machine that is related to $M_4.$
@@ -96,10 +106,10 @@ M = (\{q_0, q_1, q_{acc}, q_{rej}\}, \{0,1,2\}, \{0,1,2, \square\}, \delta, q_0,
 \]
  where
 \begin{align*}
-\delta( (q_0, \square) ) &= \underline{\phantom{FILL IN BLANK HERE}} \\
-\delta ( (q_0 ,x) ) &= \underline{\phantom{FILL IN BLANK HERE}} \qquad \text{if } x  \in \Sigma \\
-\delta( (q_1, \square) ) &= \underline{\phantom{FILL IN BLANK HERE}} \\
-\delta ( (q_1 ,x) ) &= \underline{\phantom{FILL IN BLANK HERE}} \qquad \text{if } x  \in \Sigma \\
+\delta( (q_0, \square) ) &= (q_{reg}, \square, R ) \\
+\delta ( (q_0 ,x) ) &= (q_{1}, x, R ) \qquad \quad \text    {if } x  \in \Sigma \\
+\delta( (q_1, \square) ) &=  (q_{acc}, \square, R) \\
+\delta ( (q_1 ,x) )    &= (q_{ 1 }, x, R )\qquad \quad \text{if } x  \in \Sigma \\
 \delta( (q_{acc}, x) ) &= (q_{acc}, \square, L) \qquad \text{if } x \in \Gamma\\
 \delta( (q_{rej}, x) ) &= (q_{acc}, \square, L) \qquad \text{if } x \in \Gamma\\
 \end{align*}
@@ -116,9 +126,11 @@ and codomain
 Make sure the outputs you specify when you fill in the blank are {\bf ordered triples} of the right type.
 
 
-(ii) What is $L(M)$?
+(ii) What is $L(M)$? \\
+$L(M)$ = It is a T M that recognizes all string over the \{0,1,2\} without  $\varepsilon$.
 
-(iii) Is $M$ a decider?
+(iii) Is $M$ a decider? \\
+Yes, it is.
 
 
 \end{itemize}
@@ -151,16 +163,16 @@ For each of the following claims, answer {\bf Always true} if the statement is t
 and $M_2$; answer {\bf Always false}  if the statement is false for all possible $M_1$
 and $M_2$; and answer {\bf Neither} otherwise.
 \begin{itemize}
-\item[a.] If $w \in L(M_1)$ then $w \in L(M)$.
-\item[b.] If $w \in L(M_2)$ then $w \in L(M)$.
-\item[c.] If $w \notin L(M_1)$ then $w \notin L(M)$.
-\item[d.] If $w \notin L(M_2)$ then $w \notin L(M)$.
-\item[e.] If $w \in L(M)$ then either $w \in L(M_1)$ or $w \in L(M_2)$ or both.
-\item[f.] If $w \in L(M_1)$ then $w \in L(\tilde{M})$.
-\item[g.] If $w \in L(M_2)$ then $w \in L(\tilde{M})$.
-\item[h.] If $w \notin L(M_1)$ then $w \notin L(\tilde{M})$.
-\item[i.] If $w \notin L(M_2)$ then $w \notin L(\tilde{M})$.
-\item[j.] If $w \in L(M_1)$  and $w \in L(M_2)$ then $w \in L(\tilde{M})$.
+\item[a.] If $w \in L(M_1)$ then $w \in L(M)$. \qquad  Always true.
+\item[b.] If $w \in L(M_2)$ then $w \in L(M)$. \qquad Always true.
+\item[c.] If $w \notin L(M_1)$ then $w \notin L(M)$. \qquad Neither.
+\item[d.] If $w \notin L(M_2)$ then $w \notin L(M)$.  \qquad Neither.
+\item[e.] If $w \in L(M)$ then either $w \in L(M_1)$ or $w \in L(M_2)$ or both. \qquad Always true.
+\item[f.] If $w \in L(M_1)$ then $w \in L(\tilde{M})$. \qquad Neither
+\item[g.] If $w \in L(M_2)$ then $w \in L(\tilde{M})$.  \qquad Neither
+\item[h.] If $w \notin L(M_1)$ then $w \notin L(\tilde{M})$.\qquad Always true
+\item[i.] If $w \notin L(M_2)$ then $w \notin L(\tilde{M})$. \qquad Always true
+\item[j.] If $w \in L(M_1)$  and $w \in L(M_2)$ then $w \in L(\tilde{M})$. \qquad Neither
 \end{itemize}
 
 
